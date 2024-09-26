@@ -2,6 +2,13 @@ import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class BluddyRandom {
+
+    private static final String lettersUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private static final String lettersLower = "abcdefghijklmnopqrstuvwxyz";
+    private static final String digits = "1234567890";
+    private static final String symbols = "!§$%&/()=?'*~_:;,.{[]}<>|^°´`";
+    private static final String chars = lettersUpper + lettersLower + digits + symbols;
+
     public static String randString(
             int length,
             boolean hasLettersUpper,
@@ -9,30 +16,26 @@ public class BluddyRandom {
             boolean hasDigits,
             boolean hasSymbols
     ) {
-        char[] lettersUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
-        char[] lettersLower = "abcdefghijklmnopqrstuvwxyz".toCharArray();
-        char[] digits = "1234567890".toCharArray();
-        char[] symbols = "!§$%&/()=?'*~_:;,.{[]}<>|^°´`".toCharArray();
 
         ArrayList<Character> chars = new ArrayList<>();
 
         if (hasLettersUpper) {
-            for (char c : lettersUpper) {
+            for (char c : lettersUpper.toCharArray()) {
                 chars.add(c);
             }
         }
         if (hasLettersLower) {
-            for (char c : lettersLower) {
+            for (char c : lettersLower.toCharArray()) {
                 chars.add(c);
             }
         }
         if (hasDigits) {
-            for (char c : digits) {
+            for (char c : digits.toCharArray()) {
                 chars.add(c);
             }
         }
         if (hasSymbols) {
-            for (char c : symbols) {
+            for (char c : symbols.toCharArray()) {
                 chars.add(c);
             }
         }
@@ -48,12 +51,10 @@ public class BluddyRandom {
 
 
     public static String randString(int length) {
-        char[] chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890!§$%&/()=?'*~_:;,.{[]}<>|^°´`".toCharArray();
-
         String result = "";
 
         for (int i = 0; i < length; i++) {
-            result += chars[ThreadLocalRandom.current().nextInt(0, chars.length)];
+            result += chars.toCharArray()[ThreadLocalRandom.current().nextInt(0, chars.length())];
         }
 
         return result;
